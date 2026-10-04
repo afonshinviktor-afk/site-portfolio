@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<title>Портфолио — Афоньшин Виктор Алексеевич</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0b0912;--panel:#13101f;--fg:#f3f0ff;--muted:#a59fc0;--line:#2a2440;
+  --blue:#4b69ff;--purple:#8847ff;--pink:#d32ce6;--red:#eb4b4b;--gold:#e4ae39;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px);background:var(--bg);}
+*{box-sizing:border-box;}
+body{
+  margin:0;color:var(--fg);line-height:1.6;
+  font-family:"Montserrat",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  background:
+    radial-gradient(rgba(136,71,255,.18) 1px,transparent 1.5px) 0 0/28px 28px,
+    var(--bg);
+}
+/* Свечение */
+body::before,body::after{
+  content:"";position:fixed;z-index:-1;pointer-events:none;border-radius:50%;
+  width:60vmax;height:60vmax;filter:blur(100px);opacity:.42;
+  animation:drift 22s ease-in-out infinite alternate;
+}
+body::before{top:-24vmax;left:-20vmax;background:radial-gradient(circle,var(--purple),transparent 65%);}
+body::after{bottom:-26vmax;right:-22vmax;background:radial-gradient(circle,var(--pink),transparent 65%);animation-duration:28s;animation-direction:alternate-reverse;}
+@keyframes drift{from{transform:translate(0,0) scale(1);}to{transform:translate(8vmax,6vmax) scale(1.15);}}
+@media (prefers-reduced-motion: reduce){body::before,body::after{animation:none;}}
+
+header{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:10;
+  background:rgba(11,9,18,.72);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+nav{max-width:920px;margin:0 auto;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+.logo{font-weight:800;letter-spacing:.04em;text-transform:uppercase;font-size:.95rem;
+  background:linear-gradient(90deg,var(--purple),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;}
+nav ul{display:flex;flex-wrap:wrap;gap:6px 22px;list-style:none;margin:0;padding:0;}
+nav a{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:color .15s,text-shadow .15s;}
+nav a:hover{color:#fff;text-shadow:0 0 12px var(--pink);}
+
+main{max-width:920px;margin:0 auto;padding:0 24px;}
+.hero{padding:96px 0 72px;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;}
+.avatar{
+  width:120px;height:120px;border-radius:28px;display:grid;place-items:center;
+  font-size:2.6rem;font-weight:800;color:#fff;
+  background:linear-gradient(135deg,var(--purple),var(--pink));
+  box-shadow:0 0 0 2px rgba(255,255,255,.12),0 0 48px rgba(211,44,230,.55);
+  transform:rotate(-4deg);
+}
+.hero p.kicker{
+  display:inline-block;margin:0 0 14px;padding:4px 12px;border-radius:999px;
+  background:rgba(136,71,255,.18);border:1px solid rgba(136,71,255,.5);
+  color:#cdb8ff;font-weight:700;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+}
+h1{margin:0 0 12px;font-size:clamp(2rem,6vw,3.3rem);line-height:1.08;font-weight:800;letter-spacing:-.02em;text-shadow:0 0 32px rgba(136,71,255,.55);}
+.hero p.school{margin:0;color:var(--muted);font-size:1.1rem;font-weight:500;}
+.hero p.school::before{content:"";display:inline-block;width:10px;height:10px;margin-right:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold);}
+
+section{padding:44px 0 36px;}
+h2{margin:0 0 22px;font-size:1.6rem;font-weight:800;letter-spacing:.01em;text-transform:uppercase;display:flex;align-items:center;gap:14px;}
+h2::before{content:"";width:6px;height:1.5em;border-radius:3px;background:linear-gradient(var(--purple),var(--pink));box-shadow:0 0 14px var(--pink);}
+
+.card{
+  --r:var(--purple);
+  position:relative;border-radius:16px;padding:22px 22px 24px;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--r) 24%,var(--panel)),var(--panel) 70%);
+  border:1px solid color-mix(in srgb,var(--r) 55%,transparent);
+  border-bottom:3px solid var(--r);
+  box-shadow:0 0 28px color-mix(in srgb,var(--r) 28%,transparent);
+}
+.card h3{margin:0 0 6px;font-size:1.1rem;font-weight:700;}
+.card .meta{color:var(--muted);margin:0;font-size:.95rem;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
+#achievements .card:nth-child(1){--r:var(--blue);}
+#achievements .card:nth-child(2){--r:var(--gold);}
+#achievements .card:nth-child(3){--r:var(--pink);}
+#education .card{--r:var(--purple);}
+#pets .card{--r:var(--red);}
+#contacts .card{--r:var(--gold);}
+.contact{text-decoration:none;color:var(--fg);display:block;overflow-wrap:anywhere;font-weight:700;font-size:1.1rem;transition:transform .15s,box-shadow .15s;}
+.contact:hover{transform:translateY(-3px);box-shadow:0 0 44px color-mix(in srgb,var(--r) 55%,transparent);}
+.contact small{display:block;color:var(--muted);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;}
+footer{max-width:920px;margin:0 auto;padding:32px 24px 56px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);}
+@media (max-width:560px){
+  .hero{grid-template-columns:1fr;padding:56px 0 40px;gap:24px;}
+  .avatar{width:92px;height:92px;font-size:2rem;border-radius:22px;}
+  nav{flex-direction:column;align-items:flex-start;gap:8px;}
+  nav ul{gap:6px 14px;}
+}
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <span class="logo">Афоньшин В. А.</span>
+    <ul>
+      <li><a href="#achievements">Достижения</a></li>
+      <li><a href="#education">Образовательное учреждение</a></li>
+      <li><a href="#pets">Питомцы</a></li>
+      <li><a href="#contacts">Контакты</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <div class="hero">
+    <div class="avatar">АВ</div>
+    <div>
+      <p class="kicker">Портфолио</p>
+      <h1>Афоньшин Виктор Алексеевич</h1>
+      <p class="school">МАОУ №35</p>
+    </div>
+  </div>
+
+  <section id="achievements">
+    <h2>Достижения</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Грамота за участие</h3>
+        <p class="meta">Новогодний конкурс «Минута Славы»</p>
+      </div>
+      <div class="card">
+        <h3>Медаль выпускника начальных классов</h3>
+        <p class="meta">Окончание начальной школы</p>
+      </div>
+      <div class="card">
+        <h3>Грамота призёра</h3>
+        <p class="meta">Школьный этап всероссийской олимпиады школьников по английскому языку</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Образовательное учреждение</h2>
+    <div class="card">
+      <h3>МАОУ №35</h3>
+    </div>
+  </section>
+
+  <section id="pets">
+    <h2>Питомцы</h2>
+    <div class="card">
+      <h3>Муся</h3>
+      <p class="meta">Кошка</p>
+    </div>
+  </section>
+
+  <section id="contacts">
+    <h2>Контакты</h2>
+    <div class="grid">
+      <a class="card contact" href="tel:+79101269444"><small>Телефон</small>+7 910 126-94-44</a>
+    </div>
+  </section>
+</main>
+<footer>© Афоньшин Виктор Алексеевич</footer>
+</body>
+</html>
